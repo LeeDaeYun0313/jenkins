@@ -15,7 +15,6 @@ amazon-linux-extras install java-openjdk11
 yum install -y java-11-openjdk-devel.x86_64
 
 
-/usr/lib/jvm/java-11-openjdk-11.0.12.0.7-0.amzn2.0.2.x86_64
 yum install -y java-11-openjdk-devel.x86_64
 readlink -f /etc/alternatives/java 하면 연결된 디렉토리  /usr/lib/jvm/java-11-openjdk-11.0.12.0.7-0.amzn2.0.2.x86_64/bin/java 가 나오는데 
 
@@ -31,9 +30,11 @@ source /etc/profile
 
 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
 rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key  
-yum install epel-release # repository that provides 'daemonize'
-yum install jenkins
+amazon-linux-extras install epel
+yum install -y epel-release # repository that provides 'daemonize'
+yum install -y jenkins
 젠킨스 다운하고
+systemctl restart jenkins
 
 vi /etc/sysconfig/jenkins 에서 포트 60080으로 변경하고 보안그룹 60080열어주기 끝~
 
@@ -45,6 +46,14 @@ vi /etc/sysconfig/jenkins 에서 포트 60080으로 변경하고 보안그룹 60
 배포서버에서 mkdir /source 만들고
 
 
+vi /etc/
+
+#!/bin/bash
+yum install -y httpd
+cat > /var/www/html/index.html << EOF
+<html><body><h1>jac</h1></body></html>
+EOF
+systemctl restart httpd
 
 
 
