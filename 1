@@ -38,13 +38,22 @@ systemctl restart jenkins
 
 vi /etc/sysconfig/jenkins 에서 포트 60080으로 변경하고 보안그룹 60080열어주기 끝~
 
-젠킨스에서 시스템설정에서 publish over ssh 설치
+깃허브 레파지토리 하나생성 하고 깃 연결
+
+젠킨스에서 플러그인설치에서 publish over ssh,blue ocean,GitHub Integration,GitHub Authentication 설치
+
+젠킨스 시스템설정 -> 젠킨스서버에 만든 개인키 넣어주기
 
 해서 등록 에 맨밑에
 개인키 넣고
 
-배포서버에서 mkdir /source 만들고
+node1
+프라이빗 ip
+root
+디플로이 서버 에서 mkdir /source 만들고
 
+
+젠킨스서버에 깃 설치
 
 vi /etc/
 
