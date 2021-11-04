@@ -1,5 +1,15 @@
 서버 2개 만들고 (젠킨스,배포)
 
+
+sudo su - 
+ssh-keygen -m PEM
+cat .ssh/id_rsa.pub  복사해서 배포서버 .ssh/authorized_keys 에 복사
+
+배포서버 vi /etc/ssh/sshd_config 에서 permitrootlogin yes 
+그 후
+젠킨스서버에서 ssh root@배포서버ip 해주면 젠킨스에서 배포서버(root)로 접속가능
+
+
 젠킨스 서버에
 amazon-linux-extras install java-openjdk11
 yum install -y java-11-openjdk-devel.x86_64
@@ -17,11 +27,22 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.12.0.7-0.amzn2.0.2.x86_64
 export PATH=$PATH:/$JAVA_HOME/bin
 
 !환경변수 적용!!
+source /etc/profile
 
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key  
+yum install epel-release # repository that provides 'daemonize'
+yum install jenkins
+젠킨스 다운하고
 
+vi /etc/sysconfig/jenkins 에서 포트 60080으로 변경하고 보안그룹 60080열어주기 끝~
 
+젠킨스에서 시스템설정에서 publish over ssh 설치
 
+해서 등록 에 맨밑에
+개인키 넣고
 
+배포서버에서 mkdir /source 만들고
 
 
 
