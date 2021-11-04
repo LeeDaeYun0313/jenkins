@@ -1,0 +1,41 @@
+서버 2개 만들고 (젠킨스,배포)
+
+젠킨스 서버에
+amazon-linux-extras install java-openjdk11
+yum install -y java-11-openjdk-devel.x86_64
+
+
+/usr/lib/jvm/java-11-openjdk-11.0.12.0.7-0.amzn2.0.2.x86_64
+yum install -y java-11-openjdk-devel.x86_64
+readlink -f /etc/alternatives/java 하면 연결된 디렉토리  /usr/lib/jvm/java-11-openjdk-11.0.12.0.7-0.amzn2.0.2.x86_64/bin/java 가 나오는데 
+
+"/usr/lib/jvm/java-11-openjdk-11.0.12.0.7-0.amzn2.0.2.x86_64" 만 복사해서
+
+vi /etc/profile 이동 맨 밑에 줄에 
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.12.0.7-0.amzn2.0.2.x86_64
+export PATH=$PATH:/$JAVA_HOME/bin
+
+!환경변수 적용!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
